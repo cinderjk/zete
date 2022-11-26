@@ -24,17 +24,7 @@
             </div>
         </div>
     </div>
-    @push('scripts')
-    <script>
-        window.addEventListener('message', event => {
-            $.notify({
-                    // options
-                    message: event.detail.message
-                },{
-                    // settings
-                    type: event.detail.type,
-                });
-            });
-    </script>
-    @endpush
+    {{-- @push('scripts')
+
+    @endpush --}}
 </div>

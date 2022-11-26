@@ -7,7 +7,7 @@
                         <h5 class="card-category text-dark">Devices</h5>
                     </div>
                     <div class="card-body">
-                        <h4 class="m-0">1</h4>
+                        <h4 class="m-0">{{ $devices }}</h4>
                     </div>
                 </div>
             </div>
@@ -17,7 +17,7 @@
                         <h5 class="card-category text-success">Connected Devices</h5>
                     </div>
                     <div class="card-body">
-                        <h4 class="m-0">1</h4>
+                        <h4 class="m-0">{{ $connected_devices }}</h4>
                     </div>
                 </div>
             </div>
@@ -27,7 +27,7 @@
                         <h5 class="card-category text-danger">Disonnected</h5>
                     </div>
                     <div class="card-body">
-                        <h4 class="m-0">2</h4>
+                        <h4 class="m-0">{{ $disconnected_devices }}</h4>
                     </div>
                 </div>
             </div>

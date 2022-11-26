@@ -627,7 +627,7 @@ fieldset[disabled] .btn-primary.active {
 }
 
 .btn-success {
-  background-color: #18ce0f;
+  background-color: #00B498;
   color: #FFFFFF;
 }
 
@@ -1065,6 +1065,10 @@ fieldset[disabled] .btn-neutral.active {
 .btn-outline-success {
   color: #18ce0f;
   border-color: #18ce0f;
+}
+
+.btn-dark {
+  background-color: #1f1f1f;
 }
 
 .btn-outline-success:hover,

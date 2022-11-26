@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('description')->nullable();
             $table->boolean('status')->default(false);
+            $table->boolean('legacy')->default(false);
             $table->timestamps();
         });
     }

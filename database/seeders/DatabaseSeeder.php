@@ -24,6 +24,6 @@ class DatabaseSeeder extends Seeder
         ]);
         $admin->api_key = $admin->createToken('admin')->plainTextToken;
         $admin->save();
-        Device::factory(5)->create();
+        // Device::factory(5)->create();
     }
 }

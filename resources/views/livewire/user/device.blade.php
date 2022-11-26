@@ -6,7 +6,7 @@
                     <h4 class="card-title">Devices</h4>
                     <a href="{{ route('add-device') }}" class="btn btn-primary">Add</a>
                 </div>
-                
+
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -31,10 +31,10 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($devices as $item)
+                            @forelse ($devices as $item)
                             <tr>
                                 <td>
-                                   {{ $item->id }}
+                                    {{ $item->id }}
                                 </td>
                                 <td>
                                     {{ $item->name }}
@@ -44,16 +44,37 @@
                                 </td>
                                 <td>
                                     @if ($item->status == 1)
-                                        <span class="badge badge-success">Connected</span>
+                                    <span class="badge badge-success">Connected</span>
                                     @else
-                                        <span class="badge badge-danger">Disconnected</span>
+                                    <span class="badge badge-danger">Disconnected</span>
                                     @endif
                                 </td>
                                 <td class="text-right">
-                                    $36,738
+                                    <button class="btn btn-sm btn-primary" title="Edit">
+                                        <i class="now-ui-icons design-2_ruler-pencil"></i>
+                                    </button>
+                                    @if ($item->status == 1)
+                                    <button wire:click.prevent="disconnect('{{ $item->id }}')"
+                                        class="btn btn-sm btn-danger" title="Disconnect">
+                                        <i class="now-ui-icons media-1_button-power"></i>
+                                    </button>
+                                    @else
+                                    <a href="{{ route('scan-device', ['id' => $item->id]) }}"
+                                        class="btn btn-sm btn-success" title="Connect">
+                                        <i class="now-ui-icons loader_refresh"></i>
+                                    </a>
+                                    @endif
+                                    <button class="btn btn-sm btn-dark" title="Delete">
+                                        <i class="now-ui-icons ui-1_simple-remove"></i>
+                                    </button>
                                 </td>
                             </tr>
-                            @endforeach
+                            @empty
+                            <tr>
+                                <td colspan="5" class="text-center">
+                                    No devices, please add a device.
+                                </td>
+                            @endforelse
                         </tbody>
                     </table>
                 </div>

@@ -9,20 +9,25 @@ class AddDevice extends Component
 {
     public $name;
     public $description;
+    public $legacy = 0;
 
-    public function create()
+    public function add()
     {
         $this->validate([
             'name' => 'required',
             'description' => 'required',
+            'legacy' => 'required',
         ]);
         
-        Device::create([
+        $d = Device::create([
             'user_id' => auth()->user()->id,
             'name' => $this->name,
             'description' => $this->description,
             'status' => false,
+            'legacy' => false,
         ]);
+
+        return to_route('scan-device', ['id' => $d->id])->with('message', 'Scan your device now');
     }
 
     public function render()
