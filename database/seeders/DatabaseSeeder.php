@@ -16,12 +16,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        User::factory()->create([
+        $admin = User::factory()->create([
             'name' => 'Admin',
             'email' => 'admin@admin.com',
             'username' => 'admin',
             'password' => bcrypt('123'),
         ]);
+        $admin->api_key = $admin->createToken('admin')->plainTextToken;
+        $admin->save();
         Device::factory(5)->create();
     }
 }

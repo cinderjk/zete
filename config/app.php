@@ -55,8 +55,7 @@ return [
     */
 
     'url' => env('APP_URL', 'http://localhost'),
-    'wa_api_url' => env('WA_API_URL', 'https://api.whatsapp.com/send?phone='),
-    'wa_api_port' => env('WA_API_PORT', '443'),
+    'wa_api_url' => env('WA_API_URL'),
 
     'asset_url' => env('ASSET_URL'),
 

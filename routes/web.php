@@ -8,6 +8,7 @@ use App\Http\Livewire\Auth\Login;
 use App\Http\Livewire\User\Dashboard as UserDashboard;
 use App\Http\Livewire\User\Device as UserDevice;
 use App\Http\Livewire\User\AddDevice as UserAddDevice;
+use App\Http\Livewire\User\Profile as UserProfile;
 use App\Http\Livewire\User\ScanDevice as UserScanDevice;
 
 
@@ -33,4 +34,6 @@ Route::middleware(['auth'])->prefix('app')->group(function () {
     Route::get('devices', UserDevice::class)->name('device');
     Route::get('add-device', UserAddDevice::class)->name('add-device');
     Route::get('scan-device/{id}', UserScanDevice::class)->name('scan-device');
+
+    Route::get('profile', UserProfile::class)->name('profile');
 });
