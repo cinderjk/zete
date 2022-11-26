@@ -25,7 +25,7 @@ class Profile extends Component
         ]);
         auth()->user()->save();
         $this->api_key = auth()->user()->api_key;
-        return to_route('profile')->with('message', 'Api Key generated successfully');
+        return $this->dispatchBrowserEvent('message', ['type' => 'success',  'message' => 'Api key regenerated successfully!']);
     }
 
     public function save()
@@ -36,8 +36,7 @@ class Profile extends Component
         auth()->user()->update([
             'name' => $this->name,
         ]);
-
-        return to_route('profile')->with('message', 'Profile updated successfully');
+        return $this->dispatchBrowserEvent('message', ['type' => 'success',  'message' => 'Profile updated successfully!']);
     }
 
     public function render()

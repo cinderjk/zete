@@ -48,6 +48,7 @@
     <script src="{{ asset('assets/js/plugins/perfect-scrollbar.jquery.min.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/bootstrap-notify.js') }}"></script>
     <script src="{{ asset('assets/js/now-ui-dashboard.min.js') }}" type="text/javascript"></script>
+    @stack('scripts')
     @livewireScripts()
 </body>
 

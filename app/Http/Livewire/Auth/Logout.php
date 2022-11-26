@@ -8,7 +8,7 @@ class Logout extends Component
 {
     public function logout()
     {
-        $this->dispatchBrowserEvent('message', ['message' => 'Sedang keluar...', 'style' => 'success']); // trigger toastr
+        $this->dispatchBrowserEvent('message', ['type' => 'success',  'message' => 'Logging out...']);
         auth()->logout();
         session()->flush();
         return to_route('login');
