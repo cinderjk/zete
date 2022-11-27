@@ -4,6 +4,7 @@ namespace App\Http\Livewire\User;
 
 use Livewire\Component;
 use App\Models\Device;
+use Illuminate\Support\Facades\Cache;
 
 class ScanDevice extends Component
 {
@@ -11,6 +12,9 @@ class ScanDevice extends Component
     public $legacy;
     public $status;
     public $qr_data;
+
+    public $text;
+    public $show_refresh = false;
 
     public function mount($id)
     {
@@ -21,32 +25,23 @@ class ScanDevice extends Component
         $this->device_id = $d->id;
         $this->legacy = $d->legacy;
         $this->status = $d->status;
+        $this->text = 'Loading...';
     }
 
     public function getQRData()
     {
+        if(Cache::has('device_id_qr_'.$this->device_id)) {
+            return $this->qr_data = Cache::get('device_id_qr_'.$this->device_id);
+        }
+        removeSession($this->device_id);
         $add = addSession($this->device_id, $this->legacy);
-        if($add->success == true){
-            $this->qr_data = $add->data->qr;
-        } else {
-            $this->removeSessionData();
-            $this->dispatchBrowserEvent('message', ['type' => 'warning',  'message' => 'New QR Code...']);
+        if($add->success == false) {
+            $this->show_refresh = true;
+            return $this->text = "Please try again 30 seconds later";
         }
+        $this->qr_data = $add->data->qr;
+        return Cache::put('device_id_qr_'.$this->device_id, $this->qr_data, 15);
     }
-
-    public function removeSessionData() {
-        try{
-            removeSession($this->device_id);
-            $this->getQRData();
-        } catch (\Exception $e) {
-            $this->dispatchBrowserEvent('message', ['type' => 'error',  'message' => 'Error: ' . $e->getMessage()]);
-        }
-    }
-
-    // public function waitTenSeconds()
-    // {
-    //     $this->removeSessionData();    
-    // }
 
     public function render()
     {

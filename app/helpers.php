@@ -55,7 +55,6 @@ if(! function_exists('addSession')){
         ));
         $result = curl_exec($curl);
         curl_close($curl);
-
         return json_decode($result);
     }
 }
@@ -73,6 +72,9 @@ if(! function_exists('removeSession')){
             CURLOPT_FOLLOWLOCATION => true,
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => "DELETE",
+            CURLOPT_HTTPHEADER => array(
+                "Content-Type: application/json"
+            ),
         ));
         $result = curl_exec($curl);
         curl_close($curl);

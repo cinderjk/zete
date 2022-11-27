@@ -33,7 +33,10 @@
                         @if ($qr_data != null)
                         <img src="{{ $qr_data }}" alt="qr_code">
                         @else
-                        Loading...
+                        <p>{{ $text }}</p>
+                        @if ($show_refresh)
+                        <a class="btn btn-primary" href="{{ route('scan-device', ['id' => $device_id]) }}">Refresh</a>
+                        @endif
                         @endif
                         @else
                         <h2 class="m-0">DEVICE CONNECTED</h2>
@@ -44,5 +47,5 @@
             </div>
         </div>
     </div>
-    <div wire:init="removeSessionData"></div>
+    <div wire:init="getQRData"></div>
 </div>
