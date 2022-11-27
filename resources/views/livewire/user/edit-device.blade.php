@@ -2,10 +2,10 @@
     <div class="container">
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title">Add Device</h4>
+                <h4 class="card-title">Edit Device</h4>
             </div>
             <div class="card-body">
-                <form wire:submit.prevent="add" action="#">
+                <form wire:submit.prevent="save" action="#">
                     <div class="form-group">
                         <label for="name">Name</label>
                         <input wire:model.defer="name" type="text" class="form-control" placeholder="Enter name" name="device_name">
@@ -23,7 +23,7 @@
                         </select>
                     </div>
                     <div class="mt-3">
-                        <button type="submit" class="btn btn-primary">Add Device</button>
+                        <button type="submit" class="btn btn-primary">Save Device</button>
                         <a href="{{ route('device') }}" class="btn btn-secondary">Back</a>
                     </div>
                 </form>

@@ -5,7 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\User;
-use App\Models\Device;
+use App\Models\MessageLog;
 
 class DatabaseSeeder extends Seeder
 {
@@ -25,5 +25,6 @@ class DatabaseSeeder extends Seeder
         $admin->api_key = $admin->createToken('admin')->plainTextToken;
         $admin->save();
         // Device::factory(5)->create();
+        MessageLog::factory(25)->create();
     }
 }

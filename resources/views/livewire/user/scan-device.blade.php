@@ -26,6 +26,7 @@
                                                 </svg></span></span></strong> and select <strong>Linked
                                         Devices</strong></span></li>
                             <li>Point your phone to this screen to capture the code</li>
+                            <li>QR Code's refreshed every 20 seconds</li>
                         </ol>
                     </div>
                     <div class="col-6 text-center">
@@ -39,7 +40,7 @@
                         @endif
                         @endif
                         @else
-                        <h2 class="m-0">DEVICE CONNECTED</h2>
+                        <h2 class="m-0" id="already_connected">DEVICE CONNECTED</h2>
                         <h5>You can close this page now</h5>
                         @endif
                     </div>
@@ -48,4 +49,20 @@
         </div>
     </div>
     <div wire:init="getQRData"></div>
+    @if ($status == false)
+    @push('scripts')
+    <script>
+        var intervalId = window.setInterval(function(){
+                // call livewire method to refresh qr code
+                window.livewire.emit('checkSession');
+                console.log('check session');
+            }, 5000);
+        var intervalQr = window.setInterval(function(){
+                // call livewire method to refresh qr code
+                window.livewire.emit('getQRData');
+                console.log('get qr data');
+            }, 20000);
+    </script>
+    @endpush
+    @endif
 </div>

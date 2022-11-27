@@ -50,21 +50,22 @@
                                     @endif
                                 </td>
                                 <td class="text-right">
-                                    <button class="btn btn-sm btn-primary" title="Edit">
+                                    <a href="{{ route('edit-device', ['id' => $item->id]) }}" class="btn btn-icon btn-primary" title="Edit">
                                         <i class="now-ui-icons design-2_ruler-pencil"></i>
-                                    </button>
+                                    </a>
                                     @if ($item->status == 1)
                                     <button wire:click.prevent="disconnect('{{ $item->id }}')"
-                                        class="btn btn-sm btn-danger" title="Disconnect">
+                                        class="btn btn-icon btn-danger" title="Disconnect">
                                         <i class="now-ui-icons media-1_button-power"></i>
                                     </button>
                                     @else
                                     <a href="{{ route('scan-device', ['id' => $item->id]) }}"
-                                        class="btn btn-sm btn-success" title="Connect">
+                                        class="btn btn-icon btn-success" title="Connect">
                                         <i class="now-ui-icons loader_refresh"></i>
                                     </a>
                                     @endif
-                                    <button class="btn btn-sm btn-dark" title="Delete">
+                                    <button wire:click.prevent="deleteDevice('{{ $item->id }}')"
+                                        class="btn btn-icon btn-dark" title="Delete">
                                         <i class="now-ui-icons ui-1_simple-remove"></i>
                                     </button>
                                 </td>
@@ -74,11 +75,19 @@
                                 <td colspan="5" class="text-center">
                                     No devices, please add a device.
                                 </td>
+                            </tr>
                             @endforelse
+                            <tr>
+                                <td colspan="5" class="text-center">
+                                    <button wire:click.prevent="$emitUp('refresh')" type="button"
+                                        class="btn btn-secondary">Refresh</button>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
     </div>
+    <div wire:init="checkSession"></div>
 </div>

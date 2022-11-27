@@ -48,4 +48,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Device::class);
     }
+
+    public function messageLogs(): HasMany
+    {
+        return $this->hasMany(MessageLog::class);
+    }
 }

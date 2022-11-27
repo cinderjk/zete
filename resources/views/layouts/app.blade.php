@@ -61,6 +61,17 @@
                 });
             });
     </script>
+    @if (session()->has('message'))
+        <script>
+            $.notify({
+                    // options
+                    message: "{{ session('message') }}"
+                },{
+                    // settings
+                    type: "{{ session('type') ?? 'success' }}",
+                });
+        </script>
+    @endif
     @stack('scripts')
     @livewireScripts()
 </body>

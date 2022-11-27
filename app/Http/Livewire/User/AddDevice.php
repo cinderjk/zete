@@ -15,7 +15,7 @@ class AddDevice extends Component
     {
         $this->validate([
             'name' => 'required',
-            'description' => 'required',
+            'description' => 'nullable',
             'legacy' => 'required',
         ]);
         

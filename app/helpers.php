@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Cache;
 * @method static sessionStatus
 * @method static addSession
 * @method static removeSession
+
+* @method static sendMessages
 **/
 
 
@@ -79,5 +81,45 @@ if(! function_exists('removeSession')){
         $result = curl_exec($curl);
         curl_close($curl);
         return json_decode($result);
+    }
+}
+
+if(! function_exists('sendMessages')){
+    function sendMessages($id, $receiver, $message){
+        $base_url = config('app.wa_api_url');
+        // check if receiver number start with 0, and replace with 62
+        if(substr($receiver, 0, 1) == '0'){
+            $receiver = '62' . substr($receiver, 1);
+        }
+        $curl = curl_init();
+        // new post
+        $data = array(
+            'receiver' => $receiver,
+            'message' => [
+                'text' => $message
+            ]
+        );
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => $base_url . "/chats/send?id=" . $id,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "POST",
+            CURLOPT_POSTFIELDS => json_encode($data),
+            CURLOPT_HTTPHEADER => array(
+                "Content-Type: application/json"
+            ),
+        ));
+        $result = curl_exec($curl);
+        curl_close($curl);
+        $data = [
+            'receiver' => $receiver,
+            'message' => $message,
+            'result' => json_decode($result)
+        ];
+        return $data;
     }
 }
