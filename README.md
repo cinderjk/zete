@@ -160,7 +160,7 @@ APP_NAME=Zete
 APP_ENV=local
 APP_KEY=base64:oLpa/yTwIUUiFoPg5A17Ao15djIt6d4SOwUvdZyp5QZ=
 APP_DEBUG=false
-APP_URL=http://zete.live
+APP_URL=http://yourdomain.com
 WA_API_URL=http://example.yourdomain.com
 USE_JOB_QUEUE=false
 
@@ -207,10 +207,6 @@ RewriteRule ^(.*)$ public/$1 [L]
 10. Go to Device > Add, and create new Device
 11. Scan the QR with your whatsapp
 12. Next, go to Messages > Add, and test it.
-
-## Support
-
-For support, email fake@fake.com or join our Slack channel.
 
 ## Screenshots
 
