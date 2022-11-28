@@ -248,7 +248,3 @@ RewriteRule ^(.*)$ public/$1 [L]
 
 -   Baileys API: [ookamiiixd/baileys-api](https://github.com/ookamiiixd/baileys-api)
 -   Admin Template: [Now UI Dashboard](https://www.creative-tim.com/product/now-ui-dashboard)
-
-## License
-
-[MIT](https://choosealicense.com/licenses/mit/)
