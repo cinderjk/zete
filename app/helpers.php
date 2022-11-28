@@ -123,3 +123,37 @@ if(! function_exists('sendMessages')){
         return $data;
     }
 }
+
+// FOR API
+if(! function_exists('chatSend')){
+    function chatSend($device_id, $phone, $message){
+        $base_url = config('app.wa_api_url');
+        // check if phone number start with 0, and replace with 62
+        if(substr($phone, 0, 1) == '0'){
+            $phone = '62' . substr($phone, 1);
+        }
+        $curl = curl_init();
+        // new post
+        $data = array(
+            'receiver' => $phone,
+            'message' => $message
+        );
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => $base_url . "/chats/send?id=" . $device_id,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "POST",
+            CURLOPT_POSTFIELDS => json_encode($data),
+            CURLOPT_HTTPHEADER => array(
+                "Content-Type: application/json"
+            ),
+        ));
+        $result = curl_exec($curl);
+        curl_close($curl);
+        return json_decode($result);
+    }
+}

@@ -15,6 +15,8 @@ use App\Http\Livewire\User\ScanDevice as UserScanDevice;
 use App\Http\Livewire\User\Message as UserMessage;
 use App\Http\Livewire\User\AddMessage as UserAddMessage;
 
+use App\Http\Livewire\Docs;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -42,5 +44,6 @@ Route::middleware(['auth'])->prefix('app')->group(function () {
     Route::get('messages', UserMessage::class)->name('message');
     Route::get('add-message', UserAddMessage::class)->name('add-message');
 
+    Route::get('docs', Docs::class)->name('docs');
     Route::get('profile', UserProfile::class)->name('profile');
 });

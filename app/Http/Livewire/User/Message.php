@@ -20,7 +20,7 @@ class Message extends Component
 
     public function render()
     {
-        $message_logs = MessageLogModel::where('user_id', auth()->user()->id)->paginate(5);
+        $message_logs = MessageLogModel::where('user_id', auth()->user()->id)->orderBy('created_at', 'DESC')->paginate(5);
         return view('livewire.user.message', compact('message_logs'));
     }
 }

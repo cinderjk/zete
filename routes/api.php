@@ -4,6 +4,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\WhatsappController;
 
+
+use App\Http\Controllers\Api\v1\ChatsController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -24,5 +27,9 @@ Route::middleware('auth:sanctum')->prefix('v1')->group(function () {
         Route::get('status', [WhatsappController::class, 'status']);
         Route::post('create', [WhatsappController::class, 'create']);
         Route::post('close', [WhatsappController::class, 'close']);
+    });
+
+    Route::prefix('chats')->group(function () {
+        Route::post('send', [ChatsController::class, 'send']);
     });
 });

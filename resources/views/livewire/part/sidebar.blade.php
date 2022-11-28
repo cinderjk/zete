@@ -18,5 +18,11 @@
                 <p>Messages</p>
             </a>
         </li>
+        <li class="{{ in_array(Route::currentRouteName(), ['docs']) ? 'active' : '' }}">
+            <a href="{{ route('docs') }}">
+                <i class="now-ui-icons education_agenda-bookmark"></i>
+                <p>Docs</p>
+            </a>
+        </li>
     </ul>
 </div>

@@ -6,7 +6,10 @@
                     <h4 class="card-title">Messages</h4>
                     <div>
                         <a href="{{ route('add-message') }}" class="btn btn-primary">Add</a>
-                        <button wire:click.prevent="clearLog" type="button" class="btn btn-danger">Clear Log</button>
+                        <button wire:click.prevent="clearLog" type="button" class="btn btn-danger">
+                            <span wire:loading.remove wire:target="clearLog">Clear Log</span>
+                            <span wire:loading wire:target="clearLog">Clearing...</span>
+                        </button>
                     </div>
                 </div>
 
@@ -66,7 +69,10 @@
                             <tr>
                                 <td colspan="5" class="text-center">
                                     <button wire:click.prevent="$emitUp('refresh')" type="button"
-                                        class="btn btn-secondary">Refresh</button>
+                                        class="btn btn-secondary">
+                                        <span wire:loading.remove>Refresh</span>
+                                        <span wire:loading>Getting Data...</span>
+                                    </button>
                                 </td>
                             </tr>
                         </tbody>
