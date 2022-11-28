@@ -1,4 +1,4 @@
-<p align="center"><a href="https://github.com/cinderjk/zete" target="_blank"><img src="https://user-images.githubusercontent.com/85218269/204297488-b37d1b48-3074-4758-b2eb-fca32f2729b8.png" width="400" alt="Zete Logo"></a></p>
+<p align="center"><a href="https://github.com/cinderjk/zete" target="_blank"><img src="https://user-images.githubusercontent.com/85218269/204297488-b37d1b48-3074-4758-b2eb-fca32f2729b8.png" width="200" alt="Zete Logo"></a></p>
 
 # Zete-Panel for WhatsApp API
 
@@ -242,10 +242,6 @@ For support, email fake@fake.com or join our Slack channel.
 
 ![Docs Page](https://user-images.githubusercontent.com/85218269/204299252-841f55c8-caa3-4517-a076-5a29a6595788.png)
 
-## License
-
-[MIT](https://choosealicense.com/licenses/mit/)
-
 ## Tech Stack
 
 **Client:** Livewire, Bootstrap
@@ -256,3 +252,7 @@ For support, email fake@fake.com or join our Slack channel.
 
 -   Baileys API: [ookamiiixd/baileys-api](https://github.com/ookamiiixd/baileys-api)
 -   Admin Template: [Now UI Dashboard](https://www.creative-tim.com/product/now-ui-dashboard)
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
