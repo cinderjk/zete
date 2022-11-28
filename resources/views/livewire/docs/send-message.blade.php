@@ -167,8 +167,8 @@
                     <pre class="mb-0">      {</pre>
                     <pre class="mb-0">        "index": 1,</pre>
                     <pre class="mb-0">        "urlButton": {</pre>
-                    <pre class="mb-0">          "displayText": {{ config('app.name') }},</pre>
-                    <pre class="mb-0">          "url": {{ config('app.url') }}</pre>
+                    <pre class="mb-0">          "displayText": "{{ config('app.name') }}",</pre>
+                    <pre class="mb-0">          "url": "{{ config('app.url') }}"</pre>
                     <pre class="mb-0">        }</pre>
                     <pre class="mb-0">      },</pre>
                     <pre class="mb-0">      {</pre>

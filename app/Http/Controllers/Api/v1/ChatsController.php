@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Api\v1;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Jobs\MakeMessageLog;
+use App\Models\MessageLog;
+use App\Models\Device;
 
 class ChatsController extends Controller
 {
@@ -56,11 +58,27 @@ class ChatsController extends Controller
         $result = curl_exec($curl);
         curl_close($curl);
         $result = json_decode($result);
+
         if($result->success == true){
-            MakeMessageLog::dispatch($device_id, $phone, $message);
+            $status = 200;
+        }else{
+            $status = 500;
+        }
+        // check if use_job_queue true
+        if(config('app.use_job_queue')){
+            MakeMessageLog::dispatch($device_id, $phone, $message, $status);
         } else {
-            MakeMessageLog::dispatch($device_id, $phone, $message, 500);
+            // search device
+            $device = Device::find($device_id);
+            // save to database
+            MessageLog::create([
+                'user_id' => $device->user_id,
+                'device_name' => $device->name,
+                'to' => $phone,
+                'message' => json_encode($message),
+                'status' => $status,
+            ]);
         }
         return response()->json($result);
-     }
+    }
 }

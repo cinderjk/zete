@@ -1,66 +1,206 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+![Logo](https://user-images.githubusercontent.com/85218269/204297488-b37d1b48-3074-4758-b2eb-fca32f2729b8.png)
 
-## About Laravel
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+# Zete-Panel for WhatsApp API
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Zete-Panel, is an open-source application interface for this 
+[ookamiiixd/baileys-api](https://github.com/ookamiiixd/baileys-api) with laravel/livewire and you can install it on any Shared Hosting that support NodeJs and SSH
+## Features
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- Auto-refreh QR Code
+- Connect/Disconnect Device
+- Message Log
+- Send test Message
+- Change Profile (Name)
+- Regenerate API Key
+- Built-in API with Documentation
+- Use sanctum for API Token
+- Ready-to-use
 
-## Learning Laravel
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Installation on Shared Hosting
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### First you need to Setup the API.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
-## Laravel Sponsors
+1. Create a new subdomain, e.g. example.yourdomain.com
+2. Open the terminal or SHH to start cloning this repository to your subdomain directory
+```bash
+git clone https://github.com/ookamiiixd/baileys-api.git public_html/example.yourdomain.com
+```
+3. Enter to the subdomain directory.
+```bash
+cd public_html/example.yourdomain.com
+```
+4. Install the dependencies
+```bash
+yarn install
+```
+or
+```bash
+npm install
+```
+5. Open file manager and edit the .env
+```bash
+HOST=127.0.0.1
+PORT=48000
+MAX_RETRIES=5
+RECONNECT_INTERVAL=5000
+```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+#### Note:
+##### HOST:  don't change it
+##### PORT: use any port 48000 - 49000
+#
+6. Create .htaccess file, and copy these
+```bash
+Options +FollowSymLinks -Indexes
+IndexIgnore *
+DirectoryIndex
+<IfModule mod_rewrite.c>
+RewriteEngine on
+# Simple URL redirect:
+RewriteRule ^(.*)$ http://127.0.0.1:48000/$1 [P]
+</IfModule>
+```
 
-### Premium Partners
+Next step edit whatsapp.js, and uncomment line:71, and save it
+```bash
+69| const requiresPatch = !!(
+70|     message.buttonsMessage ||
+71|     // message.templateMessage || 
+72|     message.listMessage
+73| );
+```
+to
+```bash
+69| const requiresPatch = !!(
+70|     message.buttonsMessage ||
+71|     message.templateMessage || 
+72|     message.listMessage
+73| );
+```
+7. Go to "Setup Node.js App", follow these settings, and Create
+```bash
+Node.js version = v16 above
+Application mode = Production
+Application root = public_html/example.yourdomain.com
+Application URL = example.yourdomain.com
+Application startup file = app.js
+```
+8. Copy the virtual environment path, open your terminal or SSH, paste it, and Enter
+```bash
+source /home/u123456/nodevenv/public_html/example.yourdomain.com/16/bin/activate && cd /home/u123456/public_html/example.yourdomain.com
+```
+9. Install pm2
+```bash
+npm install pm2@latest -g
+```
+or
+```bash
+yarn global add pm2
+```
+10. Run the app.js
+```bash
+npx pm2 start app.js
+```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+Your API is ready, give it a try here => [DOCS](https://documenter.getpostman.com/view/18988925/UVeNni36)
 
-## Contributing
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### Install Zete-Panel
+1. Create a new domain, e.g. yourdomain.com
+2. Open the terminal or SHH to start cloning this repository to your domain directory
+```bash
+git clone https://github.com/cinderjk/zete.git public_html/yourdomain.com
+```
+3. Enter to the domain directory.
+```bash
+cd public_html/yourdomain.com
+```
+4. Install the dependencies
+```bash
+composer i
+```
+4. Create a Database
+5. Open file manager and edit the .env
+```bash
+APP_NAME=Zete
+APP_ENV=local
+APP_KEY=base64:oLpa/yTwIUUiFoPg5A17Ao15djIt6d4SOwUvdZyp5QZ=
+APP_DEBUG=false
+APP_URL=http://zete.live
+WA_API_URL=http://example.yourdomain.com
+USE_JOB_QUEUE=false
 
-## Code of Conduct
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=your_database
+DB_USERNAME=your_database_username
+DB_PASSWORD=your_database_password
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+#### Note:
+##### WA_API_URL:  change it to your API endpoint
+##### USE_JOB_QUEUE: if you enable it, you will need a cron job to run these commands
+```bash
+*/5	*	*	*	*	/usr/local/bin/php /home/u123456/public_html/yourdomain.com/artisan queue:work --max-time=300 >> /dev/null 2>&1
+```
+6. Run migration and key:generate, simply just
+```bash
+php artisan fresh:data
+```
+or
+```bash
+php artisan migrate:fresh --seed & php artisan key:generate
+```
+7. Create .htaccess file, and copy these
+```bash
+RewriteEngine on
+RewriteCond %{REQUEST_URI} !^public
+RewriteRule ^(.*)$ public/$1 [L]
+```
+8. Go to yourdomain.com
+9. Login use username admin & 123
+10. Go to Device > Add, and create new Device
+11. Scan the QR with your whatsapp
+12. Next, go to Messages > Add, and test it.
+## Support
 
-## Security Vulnerabilities
+For support, email fake@fake.com or join our Slack channel.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+
+## Screenshots
+
+### Login Page
+![Login Page](https://user-images.githubusercontent.com/85218269/204294710-00ce9f1c-5d94-45d7-ae26-dc4d44e418d3.png)
+### Dashboard 
+![Dashboard Page](https://user-images.githubusercontent.com/85218269/204294883-178049c6-34e5-4011-b9ef-7dd7ab4c16d2.png)
+### Devices 
+![Devices Page](https://user-images.githubusercontent.com/85218269/204295032-ee69badf-99e7-4adc-90ba-6a22490f7f2a.png)
+### Scan Devices 
+![Scan Devices Page](https://user-images.githubusercontent.com/85218269/204295311-7cc517bd-1bd7-4129-8e9b-049f579c535e.png)
+### Add Message 
+![Add Message Page](https://user-images.githubusercontent.com/85218269/204295909-118da08f-e174-44b4-ae75-47b9487efc0e.png)
+### Profile
+![Profile Page](https://user-images.githubusercontent.com/85218269/204298772-802f8934-ea9a-4c4d-b19a-c633d65d847e.png)
+### Docs
+![Docs Page](https://user-images.githubusercontent.com/85218269/204299252-841f55c8-caa3-4517-a076-5a29a6595788.png)
+
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+[MIT](https://choosealicense.com/licenses/mit/)
+
+
+## Tech Stack
+
+**Client:** Livewire, Bootstrap
+
+**Server:** NodeJs, Laravel
+
+## Credit
+- Baileys API: [ookamiiixd/baileys-api](https://github.com/ookamiiixd/baileys-api)
+- Admin Template: [Now UI Dashboard](https://www.creative-tim.com/product/now-ui-dashboard)
