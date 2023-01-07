@@ -25,7 +25,7 @@
                     <h6 class="mb-0 font-weight-bold">// Send text message</h6>
                     <pre class="mb-0">{</pre>
                     <pre class="mb-0">  "device_id": "xx",</pre>
-                    <pre class="mb-0">  "phone" : "62822xxxxxxx",</pre>
+                    <pre class="mb-0">  "phone" : "92300xxxxxxx",</pre>
                     <pre class="mb-0">  "message": {</pre>
                     <pre class="mb-0">    "text": "Hello there!"</pre>
                     <pre class="mb-0">  }</pre>
@@ -34,7 +34,7 @@
                     <h6 class="mb-0 font-weight-bold">// Send image message</h6>
                     <pre class="mb-0">{</pre>
                     <pre class="mb-0">  "device_id": "xx",</pre>
-                    <pre class="mb-0">  "phone" : "62822xxxxxxx",</pre>
+                    <pre class="mb-0">  "phone" : "92300xxxxxxx",</pre>
                     <pre class="mb-0">  "message": {</pre>
                     <pre class="mb-0">    "image": {</pre>
                     <pre class="mb-0">      "url": "https://example.com/logo.png"</pre>
@@ -46,7 +46,7 @@
                     <h6 class="mb-0 font-weight-bold">// Send video message</h6>
                     <pre class="mb-0">{</pre>
                     <pre class="mb-0">  "device_id": "xx",</pre>
-                    <pre class="mb-0">  "phone" : "62822xxxxxxx",</pre>
+                    <pre class="mb-0">  "phone" : "92300xxxxxxx",</pre>
                     <pre class="mb-0">  "message": {</pre>
                     <pre class="mb-0">    "video": {</pre>
                     <pre class="mb-0">      "url": "https://example.com/intro.mp4"</pre>
@@ -58,7 +58,7 @@
                     <h6 class="mb-0 font-weight-bold">// Send document message</h6>
                     <pre class="mb-0">{</pre>
                     <pre class="mb-0">  "device_id": "xx",</pre>
-                    <pre class="mb-0">  "phone" : "62822xxxxxxx",</pre>
+                    <pre class="mb-0">  "phone" : "92300xxxxxxx",</pre>
                     <pre class="mb-0">  "message": {</pre>
                     <pre class="mb-0">    "document": {</pre>
                     <pre class="mb-0">      "url": "https://example.com/presentation.pdf"</pre>
@@ -71,7 +71,7 @@
                     <h6 class="mb-0 font-weight-bold">// Send location message</h6>
                     <pre class="mb-0">{</pre>
                     <pre class="mb-0">  "device_id": "xx",</pre>
-                    <pre class="mb-0">  "phone" : "62822xxxxxxx",</pre>
+                    <pre class="mb-0">  "phone" : "92300xxxxxxx",</pre>
                     <pre class="mb-0">  "message": {</pre>
                     <pre class="mb-0">    "location": {</pre>
                     <pre class="mb-0">      "degreesLatitude": 24.121231,</pre>
@@ -83,7 +83,7 @@
                     <h6 class="mb-0 font-weight-bold">// Send a buttons message</h6>
                     <pre class="mb-0">{</pre>
                     <pre class="mb-0">  "device_id": "xx",</pre>
-                    <pre class="mb-0">  "phone" : "62822xxxxxxx",</pre>
+                    <pre class="mb-0">  "phone" : "92300xxxxxxx",</pre>
                     <pre class="mb-0">  "message": {</pre>
                     <pre class="mb-0">    "text": "Hi it s button message",</pre>
                     <pre class="mb-0">    "footer": "Hello World",</pre>
@@ -117,7 +117,7 @@
                     <h6 class="mb-0 font-weight-bold">// Send a list message</h6>
                     <pre class="mb-0">{</pre>
                     <pre class="mb-0">  "device_id": "xx",</pre>
-                    <pre class="mb-0">  "phone" : "62822xxxxxxx",</pre>
+                    <pre class="mb-0">  "phone" : "92300xxxxxxx",</pre>
                     <pre class="mb-0">  "message": {</pre>
                     <pre class="mb-0">    "text": "Hi it s button message",</pre>
                     <pre class="mb-0">    "footer": "Hello World",</pre>
@@ -159,7 +159,7 @@
                     <h6 class="mb-0 font-weight-bold">// Send a template message</h6>
                     <pre class="mb-0">{</pre>
                     <pre class="mb-0">  "device_id": "xx",</pre>
-                    <pre class="mb-0">  "phone" : "62822xxxxxxx",</pre>
+                    <pre class="mb-0">  "phone" : "92300xxxxxxx",</pre>
                     <pre class="mb-0">  "message": {</pre>
                     <pre class="mb-0">    "text": "Hi it s button message",</pre>
                     <pre class="mb-0">    "footer": "Hello World",</pre>
@@ -175,7 +175,7 @@
                     <pre class="mb-0">        "index": 2,</pre>
                     <pre class="mb-0">        "callButton": {</pre>
                     <pre class="mb-0">          "displayText": "Call Me!",</pre>
-                    <pre class="mb-0">          "phoneNumber": "621234567890"</pre>
+                    <pre class="mb-0">          "phoneNumber": "92300xxxxxxx"</pre>
                     <pre class="mb-0">        }</pre>
                     <pre class="mb-0">      },</pre>
                     <pre class="mb-0">      {</pre>
@@ -203,9 +203,9 @@
             <tr>
                 <td>Example PHP</td>
                 <td>
-                    <pre class="mb-0">$url = '{{ config('app.url') }}/api/chats/send';</pre>
+                    <pre class="mb-0">$url = '{{ config('app.url') }}/api/v1/chats/send';</pre>
                     <pre
-                        class="mb-0">$data = '{"device_id": "xx","phone" : "62822xxxxxxx","message": { text: 'Hello there!' }}';</pre>
+                        class="mb-0">$data = '{"device_id": "xx","phone" : "92300xxxxxxx","message": { text: 'Hello there!' }}';</pre>
                     <pre class="mb-3">$authorization = "Authorization: Bearer [api_key]";</pre>
 
                     <pre class="mb-0">$ch = curl_init($url);</pre>

@@ -11,7 +11,7 @@
             </ul>
         </nav>
         <div class="copyright" id="copyright">
-            &copy; Zete.
+            &copy; {{ config('app.name') }}.
         </div>
     </div>
 </footer>

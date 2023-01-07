@@ -23,6 +23,7 @@ class User extends Authenticatable
         'email',
         'password',
         'api_key',
+        'max_devices'
     ];
 
     /**

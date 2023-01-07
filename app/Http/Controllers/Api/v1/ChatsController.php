@@ -32,8 +32,8 @@ class ChatsController extends Controller
         $message = $request->message;
 
         // check if phone number start with 0, and replace with 62
-        if(substr($phone, 0, 1) == '0'){
-            $phone = '62' . substr($phone, 1);
+        if(substr($phone, 0, 1) == '92'){
+            $phone = '92' . substr($phone, 1);
         }
         $curl = curl_init();
         // new post

@@ -16,6 +16,7 @@ use App\Http\Livewire\User\Message as UserMessage;
 use App\Http\Livewire\User\AddMessage as UserAddMessage;
 
 use App\Http\Livewire\Docs;
+use App\Http\Livewire\AddUser;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,4 +47,5 @@ Route::middleware(['auth'])->prefix('app')->group(function () {
 
     Route::get('docs', Docs::class)->name('docs');
     Route::get('profile', UserProfile::class)->name('profile');
+    Route::get('AddUser', AddUser::class)->name('AddUser');
 });

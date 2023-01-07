@@ -4,6 +4,7 @@ namespace App\Http\Livewire\User;
 
 use Livewire\Component;
 use App\Models\Device;
+use App\Models\User;
 
 class AddDevice extends Component
 {
@@ -18,7 +19,9 @@ class AddDevice extends Component
             'description' => 'nullable',
             'legacy' => 'required',
         ]);
-        
+        if(User::find(auth()->user()->id)->max_devices <= Device::where('user_id',auth()->user()->id)->get()->count()){
+            return to_route('device')->with('message', 'Maximum Devices Limit reached!');
+        }
         $d = Device::create([
             'user_id' => auth()->user()->id,
             'name' => $this->name,

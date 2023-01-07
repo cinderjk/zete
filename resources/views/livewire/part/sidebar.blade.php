@@ -24,5 +24,13 @@
                 <p>Docs</p>
             </a>
         </li>
+        @if(auth()->user()->is_admin)
+        <li class="{{ in_array(Route::currentRouteName(), ['AddUser']) ? 'active' : '' }}">
+            <a href="{{ route('AddUser') }}">
+                <i class="now-ui-icons users_single-02"></i>
+                <p>Add Account</p>
+            </a>
+        </li>
+        @endif
     </ul>
 </div>
