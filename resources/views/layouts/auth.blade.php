@@ -30,6 +30,31 @@
     <script src="{{ asset('assets/js/plugins/perfect-scrollbar.jquery.min.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/bootstrap-notify.js') }}"></script>
     <script src="{{ asset('assets/js/now-ui-dashboard.min.js') }}" type="text/javascript"></script>
+    <script>
+        window.addEventListener('message', event => {
+            // check if event is exits
+            if(event.detail == undefined) return;
+            $.notify({
+                    // options
+                    message: event.detail.message
+                },{
+                    // settings
+                    type: event.detail.type,
+                });
+            });
+    </script>
+    @if (session()->has('message'))
+    <script>
+        $.notify({
+                    // options
+                    message: "{{ session('message') }}"
+                },{
+                    // settings
+                    type: "{{ session('type') ?? 'success' }}",
+                });
+    </script>
+    @endif
+    @stack('scripts')
     @livewireScripts()
 </body>
 

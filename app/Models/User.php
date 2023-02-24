@@ -44,6 +44,11 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    static function verifyPassword($password)
+    {
+        return password_verify($password, auth()->user()->password);
+    }
+
     public function devices(): HasMany
     {
         return $this->hasMany(Device::class);

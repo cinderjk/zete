@@ -26,7 +26,7 @@
     <div class="wrapper ">
         <div class="sidebar" data-color="orange">
             <div class="logo">
-                <a href="{{ route('home') }}" class="simple-text logo-normal">
+                <a href="{{ route('dashboard') }}" class="simple-text logo-normal">
                     {{ config('app.name') }}
                 </a>
             </div>
@@ -62,15 +62,15 @@
             });
     </script>
     @if (session()->has('message'))
-        <script>
-            $.notify({
+    <script>
+        $.notify({
                     // options
                     message: "{{ session('message') }}"
                 },{
                     // settings
                     type: "{{ session('type') ?? 'success' }}",
                 });
-        </script>
+    </script>
     @endif
     @stack('scripts')
     @livewireScripts()

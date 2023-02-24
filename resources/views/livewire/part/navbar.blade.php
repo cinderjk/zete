@@ -27,7 +27,7 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item" href="{{ route('profile') }}">Edit Profile</a>
-                        <a class="dropdown-item" href="#">Change Password</a>
+                        <a class="dropdown-item" href="{{ route('change-password') }}">Change Password</a>
                         @livewire('auth.logout')
                     </div>
                 </li>
