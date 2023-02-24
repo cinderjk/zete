@@ -56,7 +56,7 @@ return [
 
     'url' => env('APP_URL', 'http://localhost'),
     'wa_api_url' => env('WA_API_URL'),
-
+    'use_job_queue' => env('USE_JOB_QUEUE', false),
     'asset_url' => env('ASSET_URL'),
 
     /*

@@ -25,10 +25,10 @@
                         <button class="nav-link active" id="home-tab" data-toggle="tab" data-target="#send-message"
                             type="button" role="tab">Send Message</button>
                     </li>
-                    <li class="nav-item" role="presentation">
+                    {{-- <li class="nav-item" role="presentation">
                         <button class="nav-link" id="profile-tab" data-toggle="tab" data-target="#profile" type="button"
                             role="tab">Profile</button>
-                    </li>
+                    </li> --}}
                 </ul>
             </div>
             <div class="card-body">
@@ -36,9 +36,9 @@
                     <div class="tab-pane fade show active" id="send-message" role="tabpanel">
                         @livewire('docs.send-message')
                     </div>
-                    <div class="tab-pane fade" id="profile" role="tabpanel">
+                    {{-- <div class="tab-pane fade" id="profile" role="tabpanel">
                         1234
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>
