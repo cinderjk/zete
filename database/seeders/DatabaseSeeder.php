@@ -26,5 +26,9 @@ class DatabaseSeeder extends Seeder
         $admin->save();
         // Device::factory(5)->create();
         MessageLog::factory(25)->create();
+
+        $this->call([
+            ContactSeeder::class,
+        ]);
     }
 }

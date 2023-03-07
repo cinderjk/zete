@@ -18,6 +18,12 @@
                 <p>Messages</p>
             </a>
         </li>
+        <li class="{{ in_array(Route::currentRouteName(), ['contact', 'add-message']) ? 'active' : '' }}">
+            <a href="{{ route('contact') }}">
+                <i class="now-ui-icons business_badge"></i>
+                <p>Contacts</p>
+            </a>
+        </li>
         <li class="{{ in_array(Route::currentRouteName(), ['docs']) ? 'active' : '' }}">
             <a href="{{ route('docs') }}">
                 <i class="now-ui-icons education_agenda-bookmark"></i>

@@ -15,7 +15,27 @@ class AddMessage extends Component
         "Half the time men think they are talking business, they are wasting time.",
         "Don't slay dragons that aren't in your way",
         "When I died last, and dear, I die As often as from thee I go.",
-        "Glory is fleeting, but obscurity is forever."
+        "Glory is fleeting, but obscurity is forever.",
+        "I guess happiness is not a state you want to be in all the time.",
+        "Success is more attitude then aptitude.",
+        "For success, attitude is equally as important as ability.",
+        "Keep true to the dreams of your youth.",
+        "Lesser artists borrow, great artists steal.",
+        "Life should be great rather than long.",
+        "The internet is a great way to get on the net.",
+
+        "Hello!",
+        "¡Hola!",
+        "Bonjour!",
+        "Hallo!",
+        "Ciao!",
+        "Hej!",
+        "Olá!",
+        "Salut!",
+        "Bonan tagon!",
+        "Halò!",
+        "Kamusta!",
+        "Kaixo!",
     ];
 
     public $to, $message, $device_id, $device_name, $devices = [];
@@ -31,7 +51,7 @@ class AddMessage extends Component
 
     public function randomMessage()
     {
-        $this->message = self::$randomMessage[array_rand(self::$randomMessage)];    
+        $this->message = self::$randomMessage[array_rand(self::$randomMessage)];
     }
 
     public function add()

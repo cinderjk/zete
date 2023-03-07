@@ -35,6 +35,9 @@
                                 <button wire:click.prevent="randomMessage" type="button"
                                     class="btn btn-sm btn-dark">Random
                                     Message</button>
+                                <div wire:loading wire:target="randomMessage">
+                                    <p>Random...</p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -42,7 +45,7 @@
                         <button type="submit" class="btn btn-primary">Send Message</button>
                         <a href="{{ route('message') }}" class="btn btn-secondary">Back</a>
                     </div>
-                    <div wire:loading>
+                    <div wire:loading wire:target="add">
                         <p>Sending message...</p>
                     </div>
                 </form>
