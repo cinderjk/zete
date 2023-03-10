@@ -15,11 +15,11 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
         integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" />
-    <link href="{{ asset('assets/css/now-ui-dashboard.css') }}" rel="stylesheet" />
+    <link href="{{ asset('assets/css/now-ui-dashboard.min.css') }}" rel="stylesheet" />
     @livewireStyles()
-    @if(config('app.env') == 'local')
+    {{-- @if(config('app.env') == 'local')
     @vite('resources/js/app.js')
-    @endif
+    @endif --}}
 </head>
 
 <body class="">

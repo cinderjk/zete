@@ -18,11 +18,32 @@
                 <p>Messages</p>
             </a>
         </li>
-        <li class="{{ in_array(Route::currentRouteName(), ['contact', 'add-message']) ? 'active' : '' }}">
-            <a href="{{ route('contact') }}">
+        <li
+            class="{{ in_array(Route::currentRouteName(), ['contact', 'add-contact', 'edit-contact', 'group']) ? 'active' : '' }}">
+            <a data-toggle="collapse" href="#contacts">
                 <i class="now-ui-icons business_badge"></i>
-                <p>Contacts</p>
+                <p>
+                    Contacts <b class="caret"></b>
+                </p>
             </a>
+            <div class="collapse {{ in_array(Route::currentRouteName(), ['contact', 'add-contact', 'edit-contact', 'group']) ? 'show' : '' }} "
+                id="contacts">
+                <ul class="nav">
+                    <li
+                        class="{{ in_array(Route::currentRouteName(), ['contact', 'add-contact', 'edit-contact']) ? 'active' : '' }}">
+                        <a href="{{ route('contact') }}">
+                            <span class="sidebar-mini-icon">L</span>
+                            <span class="sidebar-normal"> List </span>
+                        </a>
+                    </li>
+                    <li class="{{ in_array(Route::currentRouteName(), ['group']) ? 'active' : '' }}">
+                        <a href="{{ route('group') }}">
+                            <span class="sidebar-mini-icon">G</span>
+                            <span class="sidebar-normal"> Groups </span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </li>
         <li class="{{ in_array(Route::currentRouteName(), ['docs']) ? 'active' : '' }}">
             <a href="{{ route('docs') }}">

@@ -4,22 +4,24 @@ namespace App\Http\Livewire\User;
 
 use Livewire\Component;
 use App\Models\Contact;
-use App\Models\Tag;
+use App\Models\Group;
 
 class AddContact extends Component
 {
-    public $name, $phone, $tags = [], $stay = false;
+    public $name, $phone, $group, $stay = false;
 
     public function add()
     {
         $this->validate([
             'name' => 'required',
             'phone' => 'required|unique:contacts',
+            'group' => 'required',
         ]);
         
         Contact::create([
             'name' => $this->name,
             'phone' => $this->phone,
+            'group_id' => $this->group,
         ]);
 
         if($this->stay){
@@ -32,7 +34,7 @@ class AddContact extends Component
 
     public function render()
     {
-        $tag_list = Tag::all();
-        return view('livewire.user.add-contact', compact('tag_list'));
+        $groups = Group::all();
+        return view('livewire.user.add-contact', compact('groups'));
     }
 }

@@ -13,34 +13,75 @@
                     </div>
                     <div class="col-8">
                         <input type="password" onfocusin="(this.type='text')" onfocusout="(this.type='password')"
-                            class="form-control" readonly value="{{ auth()->user()->api_key }}">
+                            class="form-control" readonly value="{{ auth()->user()->api_key }}" id="api-key">
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="card">
-            <div class="card-header p-0">
-                <ul class="nav nav-tabs" id="myTab" role="tablist">
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link active" id="home-tab" data-toggle="tab" data-target="#send-message"
-                            type="button" role="tab">Send Message</button>
+
+            <div class="card-body ">
+                <ul class="nav nav-pills nav-pills-primary" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-toggle="tab" href="#send-message" role="tablist">
+                            Send Message
+                        </a>
                     </li>
-                    {{-- <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="profile-tab" data-toggle="tab" data-target="#profile" type="button"
-                            role="tab">Profile</button>
-                    </li> --}}
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#chat-list" role="tablist">
+                            Chat List
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#chat-conversation" role="tablist">
+                            Chat Conversation
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#group-list" role="tablist">
+                            Group List
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#group-conversation" role="tablist">
+                            Group Conversation
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#group-info" role="tablist">
+                            Group Info
+                        </a>
+                    </li>
                 </ul>
-            </div>
-            <div class="card-body">
-                <div class="tab-content" id="myTabContent">
-                    <div class="tab-pane fade show active" id="send-message" role="tabpanel">
+                <div class="tab-content tab-space">
+                    <div class="tab-pane active" id="send-message">
                         @livewire('docs.send-message')
                     </div>
-                    {{-- <div class="tab-pane fade" id="profile" role="tabpanel">
-                        1234
-                    </div> --}}
+                    <div class="tab-pane" id="chat-list">
+                        @livewire('docs.chat-list')
+                    </div>
+                    <div class="tab-pane" id="chat-conversation">
+                        @livewire('docs.chat-conversation')
+                    </div>
+                    <div class="tab-pane" id="group-list">
+                        @livewire('docs.group-list')
+                    </div>
+                    <div class="tab-pane" id="group-conversation">
+                        @livewire('docs.group-conversation')
+                    </div>
+                    <div class="tab-pane" id="group-info">
+                        @livewire('docs.group-info')
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+    @push('scripts')
+    <script>
+        $('#api-key').on('click', function(e) {
+            e.preventDefault();
+            $(this).select();
+            document.execCommand('copy');
+            alert('Copied');
+        });
+    </script>
+    @endpush
 </div>

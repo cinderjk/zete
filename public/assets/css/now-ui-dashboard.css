@@ -379,10 +379,10 @@ Copyright (c) 2015 Daniel Eden
 .show>.navbar .navbar-nav>a.btn.dropdown-toggle,
 .show>.navbar .navbar-nav>a.btn.dropdown-toggle:focus,
 .show>.navbar .navbar-nav>a.btn.dropdown-toggle:hover {
-  background-color: #979797;
+  background-color: #3e3e3e;
   color: #FFFFFF;
   box-shadow: none;
-  border-color: #979797;
+  border-color: #3e3e3e;
 }
 
 .btn:not([data-action]):not([class*="btn-outline-"]):hover,
@@ -642,10 +642,10 @@ fieldset[disabled] .btn-primary.active {
 .show>.btn-success.dropdown-toggle,
 .show>.btn-success.dropdown-toggle:focus,
 .show>.btn-success.dropdown-toggle:hover {
-  background-color: #1beb11;
+  background-color: #07c4a7;
   color: #FFFFFF;
   box-shadow: none;
-  border-color: #1beb11;
+  border-color: #07c4a7;
 }
 
 .btn-success:not([data-action]):not([class*="btn-outline-"]):hover {

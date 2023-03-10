@@ -18,6 +18,10 @@ use App\Http\Livewire\User\AddMessage as UserAddMessage;
 
 use App\Http\Livewire\User\Contact as UserContact;
 use App\Http\Livewire\User\AddContact as UserAddContact;
+use App\Http\Livewire\User\EditContact as UserEditContact;
+use App\Http\Livewire\User\Group as UserGroup;
+
+use App\Http\Controllers\ExcelController;
 
 use App\Http\Livewire\Docs;
 
@@ -45,8 +49,14 @@ Route::middleware(['auth'])->group(function () {
     Route::get('messages', UserMessage::class)->name('message');
     Route::get('add-message', UserAddMessage::class)->name('add-message');
 
-    Route::get('contacts', UserContact::class)->name('contact');
-    Route::get('add-contact', UserAddContact::class)->name('add-contact');
+    Route::group(['prefix' => 'contact'], function () {
+        Route::get('/', UserContact::class)->name('contact');
+        Route::get('add', UserAddContact::class)->name('add-contact');
+        Route::get('edit/{id}', UserEditContact::class)->name('edit-contact');
+        Route::get('group', UserGroup::class)->name('group');
+    });
+
+    Route::post('import-contact', [ExcelController::class, 'importContact'])->name('import-contact');
 
     Route::get('docs', Docs::class)->name('docs');
     Route::get('profile', UserProfile::class)->name('profile');

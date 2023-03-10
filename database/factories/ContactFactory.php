@@ -18,7 +18,8 @@ class ContactFactory extends Factory
     {
         return [
             'name' => $this->faker->name(),
-            'phone' => $this->faker->phoneNumber(),
+            'phone' => $this->faker->numerify('628123#######'),
+            'group_id' => $this->faker->numberBetween(1, 4),
         ];
     }
 }

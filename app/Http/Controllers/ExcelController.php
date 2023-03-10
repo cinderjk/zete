@@ -11,15 +11,18 @@ class ExcelController extends Controller
     // import contact from excel file
     public function importContact(Request $request)
     {
+        $group = $request->group_import;
         $file = $request->file('file');
-        $collection = (new FastExcel)->import($file);
-        foreach ($collection as $row) {
-            $contact = Contact::create($row);
-            $tags = explode(',', $row['tags']);
-            foreach ($tags as $tag) {
-                $contact->tags()->attach($tag);
-            }
-        }
-        return redirect()->route('contacts.index')->with('message', 'Contacts imported successfully.');
+        $fileName = $file->getClientOriginalName();
+        $file->move('uploads', $fileName);
+        (new FastExcel)->import(public_path('/uploads/'.$file->getClientOriginalName()), function ($line) use($group) {
+                return Contact::create([
+                    'name' => $line['name'],
+                    'phone' => $line['phone'],
+                    'group_id' => $group
+                ]);
+        });
+        unlink(public_path('/uploads/'.$file->getClientOriginalName()));
+        return to_route('contact')->with('message', 'Contacts imported successfully.');
     }
 }

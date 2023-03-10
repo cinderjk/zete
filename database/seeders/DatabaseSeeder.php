@@ -28,6 +28,7 @@ class DatabaseSeeder extends Seeder
         MessageLog::factory(25)->create();
 
         $this->call([
+            GroupSeeder::class,
             ContactSeeder::class,
         ]);
     }

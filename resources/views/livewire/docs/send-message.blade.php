@@ -196,7 +196,7 @@
                     <pre class="mb-0">{</pre>
                     <pre class="mb-0">  "success": true,</pre>
                     <pre class="mb-0">  "message" : "The message has been successfully sent.",</pre>
-                    <pre class="mb-0">  "data": {}</pre>
+                    <pre class="mb-0">  "data": []</pre>
                     <pre class="mb-3">}</pre>
                 </td>
             </tr>

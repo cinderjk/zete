@@ -4,8 +4,9 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Group;
 
-class TagSeeder extends Seeder
+class GroupSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,6 +15,9 @@ class TagSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Group::create(['name' => 'Hearts']);
+        Group::create(['name' => 'Diamonds']);
+        Group::create(['name' => 'Clubs']);
+        Group::create(['name' => 'Spades']);
     }
 }
