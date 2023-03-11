@@ -9,8 +9,8 @@ use Livewire\WithPagination;
 class Contact extends Component
 {
     use WithPagination;
-    public $q;
-    public $g;
+    public $q = null;
+    public $g = null;
     public $perPage = 5;
     public $selected = [];
     protected $paginationTheme = 'bootstrap';
@@ -36,7 +36,7 @@ class Contact extends Component
 
     public function updatedG()
     {
-        $this->gotoPage(1);   
+        $this->gotoPage(1); 
         $this->deselectAll();
         $this->dispatchBrowserEvent('uncheckSelectAll');
     }
@@ -99,21 +99,24 @@ class Contact extends Component
 
     public function render()
     {
-        if($this->q || $this->g){
-            if($this->g){
-                $contacts = ContactModel::
-                    where('name', 'like', '%'.$this->q.'%')->
-                    orWhere('phone', 'like', '%'.$this->q.'%')->
-                    where('group_id', $this->g)->
-                    with('group')->
-                    paginate($this->perPage);
-            } else {
-                $contacts = ContactModel::
+        if($this->q && $this->g){
+            $contacts = ContactModel::
+                where('group_id', $this->g)->
                 where('name', 'like', '%'.$this->q.'%')->
                 orWhere('phone', 'like', '%'.$this->q.'%')->
                 with('group')->
                 paginate($this->perPage);
-            }
+        } elseif($this->q && !$this->g){
+            $contacts = ContactModel::
+            where('name', 'like', '%'.$this->q.'%')->
+            orWhere('phone', 'like', '%'.$this->q.'%')->
+            with('group')->
+            paginate($this->perPage);
+        } elseif(!$this->q && $this->g){
+            $contacts = ContactModel::
+            where('group_id', $this->g)->
+            with('group')->
+            paginate($this->perPage);
         } else{
             $contacts = ContactModel::paginate($this->perPage);
         }

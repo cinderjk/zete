@@ -19,8 +19,10 @@
                                 required="">
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="form-control btn btn-primary rounded submit px-3">Log
-                                in</button>
+                            <button type="submit" class="form-control btn btn-primary rounded submit px-3">
+                                <span wire:loading.remove wire:target="login">Log in</span>
+                                <span wire:loading wire:target="login">Please wait..</span>
+                            </button>
                         </div>
                     </form>
                 </div>

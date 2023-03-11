@@ -11,7 +11,13 @@
             </ul>
         </nav>
         <div class="copyright" id="copyright">
-            &copy; Zete.
+            <nav>
+                <ul>
+                    <li>
+                        &copy;<a href="https://github.com/cinderjk/zete">Zete</a>
+                    </li>
+                </ul>
+            </nav>
         </div>
     </div>
 </footer>

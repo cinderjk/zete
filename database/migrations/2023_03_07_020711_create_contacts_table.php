@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('name');
             $table->string('phone');
             $table->foreignId('group_id')->nullable()->constrained()->onDelete('set null');
-            $table->softDeletes();
             $table->timestamps();
         });
     }
