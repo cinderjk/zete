@@ -7,7 +7,7 @@
             </tr>
             <tr>
                 <td>URL</td>
-                <td>{{ config('app.url') }}/api/v1/groups</td>
+                <td>{{ config('app.url') }}/api/groups</td>
             </tr>
             <tr>
                 <td>Format Data</td>

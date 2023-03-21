@@ -16,7 +16,7 @@ if(! function_exists('sessionStatus')){
         $base_url = config('app.wa_api_url');
         $curl = curl_init();
         curl_setopt_array($curl, array(
-            CURLOPT_URL => $base_url . "/sessions/status/" . $id,
+            CURLOPT_URL => $base_url . "/sessions/" . $id . "/status",
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => "",
             CURLOPT_MAXREDIRS => 10,
@@ -94,13 +94,14 @@ if(! function_exists('sendMessages')){
         $curl = curl_init();
         // new post
         $data = array(
-            'receiver' => $receiver,
+            'jid' => $receiver . '@s.whatsapp.net',
+            'type' => 'number',
             'message' => [
                 'text' => $message
             ]
         );
         curl_setopt_array($curl, array(
-            CURLOPT_URL => $base_url . "/chats/send?id=" . $id,
+            CURLOPT_URL => $base_url . "/" . $id . "/messages/send",
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => "",
             CURLOPT_MAXREDIRS => 10,
@@ -135,11 +136,14 @@ if(! function_exists('chatSend')){
         $curl = curl_init();
         // new post
         $data = array(
-            'receiver' => $phone,
-            'message' => $message
+            'jid' => $phone . '@s.whatsapp.net',
+            'type' => 'number',
+            'message' => [
+                'text' => $message
+            ]
         );
         curl_setopt_array($curl, array(
-            CURLOPT_URL => $base_url . "/chats/send?id=" . $device_id,
+            CURLOPT_URL => $base_url . "/" . $device_id . "/messages/send",
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => "",
             CURLOPT_MAXREDIRS => 10,

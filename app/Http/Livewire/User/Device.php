@@ -14,18 +14,11 @@ class Device extends Component
         $devices = DeviceModel::where('user_id', auth()->user()->id)->get();
         foreach($devices as $device) {
             $check = sessionStatus($device->id);
-            if($check->success == true) {
-                if(!is_null($check->data->status) && $check->data->status == 'authenticated') {
-                    DeviceModel::where('id', $device->id)->update([
-                        'status' => 1
-                    ]);
-                    return;
-                } else {
-                    DeviceModel::where('id', $device->id)->update([
-                        'status' => 0
-                    ]);
-                    return;
-                }
+            if($check->status == "AUTHENTICATED") {
+                DeviceModel::where('id', $device->id)->update([
+                    'status' => 1
+                ]);
+                return;
             } else {
                 DeviceModel::where('id', $device->id)->update([
                     'status' => 0

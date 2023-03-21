@@ -25,7 +25,7 @@
                             Send Message
                         </a>
                     </li>
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a class="nav-link" data-toggle="tab" href="#chat-list" role="tablist">
                             Chat List
                         </a>
@@ -49,13 +49,13 @@
                         <a class="nav-link" data-toggle="tab" href="#group-info" role="tablist">
                             Group Info
                         </a>
-                    </li>
+                    </li> --}}
                 </ul>
                 <div class="tab-content tab-space">
                     <div class="tab-pane active" id="send-message">
                         @livewire('docs.send-message')
                     </div>
-                    <div class="tab-pane" id="chat-list">
+                    {{-- <div class="tab-pane" id="chat-list">
                         @livewire('docs.chat-list')
                     </div>
                     <div class="tab-pane" id="chat-conversation">
@@ -69,7 +69,7 @@
                     </div>
                     <div class="tab-pane" id="group-info">
                         @livewire('docs.group-info')
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>

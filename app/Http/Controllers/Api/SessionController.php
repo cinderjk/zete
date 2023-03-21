@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-class WhatsappController extends Controller
+class SessionController extends Controller
 {
     // status
     public function status(Request $request)

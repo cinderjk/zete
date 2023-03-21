@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api\v1;
+namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -8,7 +8,7 @@ use App\Jobs\MakeMessageLog;
 use App\Models\MessageLog;
 use App\Models\Device;
 
-class ChatsController extends Controller
+class ChatController extends Controller
 {
     public $base_url;
 
@@ -78,6 +78,44 @@ class ChatsController extends Controller
                 'message' => json_encode($message),
                 'status' => $status,
             ]);
+        }
+        return response()->json($result);
+    }
+
+    public function list(Request $request)
+    {
+        if(!auth()->user()){
+            return response()->json([
+                'status' => false,
+                'message' => 'Unauthorized',
+            ], 401);
+        }
+
+        $device_id = $request->device_id;
+        $limit = $request->limit;
+
+        $curl = curl_init();
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => $this->base_url . "/chats/send?id=" . $device_id,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "POST",
+            CURLOPT_HTTPHEADER => array(
+                "Content-Type: application/json"
+            ),
+        ));
+        $result = curl_exec($curl);
+        curl_close($curl);
+        $result = json_decode($result);
+
+        if($result->success == true){
+            $status = 200;
+        }else{
+            $status = 500;
         }
         return response()->json($result);
     }

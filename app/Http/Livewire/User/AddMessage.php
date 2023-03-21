@@ -69,7 +69,7 @@ class AddMessage extends Component
         ]);
         $send = sendMessages($this->device_id, $this->to, $this->message);
         $result = $send['result'];
-        if($result->success == true) {
+        if($result->status == "PENDING") {
             MessageLog::create([
                 'user_id' => auth()->user()->id,
                 'device_name' => $this->device_name,

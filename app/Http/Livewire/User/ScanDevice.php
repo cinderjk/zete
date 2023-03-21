@@ -59,7 +59,7 @@ class ScanDevice extends Component
     public function checkSession()
     {
         $check = sessionStatus($this->device_id);
-        if($check->success == true) {
+        if($check->status == "AUTHENTICATED") {
             if(!is_null($check->data->status) && $check->data->status == 'authenticated') {
                 Device::where('id', $this->device_id)->update([
                     'status' => 1
