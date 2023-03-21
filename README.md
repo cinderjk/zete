@@ -3,7 +3,7 @@
 # Zete-Panel for WhatsApp API
 
 Zete-Panel, is an open-source application interface for this
-[ookamiiixd/baileys-api](https://github.com/ookamiiixd/baileys-api) with laravel/livewire and you can install it on any Shared Hosting that support NodeJs and SSH
+[ookamiiixd/baileys-api](https://github.com/ookamiiixd/baileys-api/tree/1.0.0-beta.0) with laravel/livewire and you can install it on any Shared Hosting that support NodeJs and SSH
 
 ## Features
 
@@ -49,10 +49,26 @@ npm install
 5. Open file manager and edit the .env
 
 ```bash
-HOST=127.0.0.1
-PORT=48000
-MAX_RETRIES=5
-RECONNECT_INTERVAL=5000
+# Listening Host
+HOST="127.0.0.1"
+
+# Listening Port
+PORT="48000"
+
+# Database Connection URL
+DATABASE_URL="mysql://root:12345@localhost:3306/baileys_api"
+
+# Reconnect Interval (in Milliseconds)
+RECONNECT_INTERVAL="5000"
+
+# Maximum Reconnect Attempts
+MAX_RECONNECT_RETRIES="5"
+
+# Maximum SSE QR Generation Attempts
+SSE_MAX_QR_GENERATION="10"
+
+# Pino Logger Level
+LOG_LEVEL="warn"
 ```
 
 #### Note:
@@ -129,7 +145,7 @@ yarn global add pm2
 npx pm2 start app.js
 ```
 
-Your API is ready, give it a try here => [DOCS](https://documenter.getpostman.com/view/18988925/UVeNni36)
+Your API is ready, give it a try here => [DOCS](https://documenter.getpostman.com/view/18988925/2s8Z73zWbg)
 
 ### Install Zete-Panel
 
