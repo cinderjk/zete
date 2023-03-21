@@ -2,6 +2,8 @@
 
 # Zete-Panel for WhatsApp API
 
+[![Tests](https://github.com/cinderjk/zete/actions/workflows/laravel.yml/badge.svg)](https://github.com/cinderjk/zete/actions/workflows/laravel.yml)
+
 Zete-Panel, is an open-source application interface for this
 [ookamiiixd/baileys-api](https://github.com/ookamiiixd/baileys-api/tree/1.0.0-beta.0) with laravel/livewire and you can install it on any Shared Hosting that support NodeJs and SSH
 
