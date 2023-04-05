@@ -35,13 +35,11 @@ git clone https://github.com/ookamiiixd/baileys-api.git public_html/example.your
 ```bash
 cd public_html/example.yourdomain.com
 ```
-
 4. Setup configuration
 
 #### Create a database for ookamiiiixd/baileys-api as it is needed for data storage
 
 Then copy the .env from .env.example
-
 ```bash
 cp .env.example .env
 ```
@@ -51,7 +49,6 @@ then edit the .env file, you can use nano with the command
 ```bash
 nano .env
 ```
-
 Paste this
 
 ```env
@@ -78,43 +75,7 @@ SSE_MAX_QR_GENERATION="10"
 LOG_LEVEL="warn"
 ```
 
-5. Install the dependencies
-
-```bash
-yarn install
-```
-
-or
-
-```bash
-npm i
-```
-
-6. Build the project
-
-```bash
-yarn build
-```
-
-or
-
-```sh
-npm run build
-```
-
-7. Push the schema
-
-```sh
-npx prisma db push
-```
-
-8. Start the ookamiiixd/baileys-api
-
-```sh
-npm run start
-```
-
-9. Create .htaccess file, and copy these
+5. Create .htaccess file, and copy these
 
 ```bash
 Options +FollowSymLinks -Indexes
@@ -126,7 +87,8 @@ RewriteRule ^(.*)$ http://127.0.0.1:48000/$1 [P]
 </IfModule>
 ```
 
-10. Go to "Setup Node.js App", follow these settings, and Create
+
+6. Go to "Setup Node.js App", follow these settings, and Create
 
 ```bash
 Node.js version = v16 above
@@ -136,13 +98,39 @@ Application URL = example.yourdomain.com
 Application startup file = app.js
 ```
 
-11. Copy the virtual environment path, open your terminal or SSH, paste it, and Enter
+7. Copy the virtual environment path, open your terminal or SSH, paste it, and Enter
 
 ```bash
 source /home/u123456/nodevenv/public_html/example.yourdomain.com/16/bin/activate && cd /home/u123456/public_html/example.yourdomain.com
 ```
+8. Install the dependencies
 
-12. Install pm2
+```bash
+yarn install
+```
+
+or
+
+```bash
+npm i
+```
+
+9. Build the project
+```bash
+yarn build
+```
+or
+```sh
+npm run build
+```
+
+10. Push the schema
+
+```sh
+npx prisma db push
+```
+
+11. Install pm2
 
 ```bash
 npm install pm2@latest -g
@@ -154,14 +142,13 @@ or
 yarn global add pm2
 ```
 
-13. Run the app.js
+12. Run the app.js
 
 ```bash
 npx pm2 start app.js
 ```
-
-14. Now the endpoint should be available according to your environment variables configuration. Default is at `http://example.yourdomain.com`
-    Your API is ready, give it a try here => [DOCS](https://documenter.getpostman.com/view/18988925/2s8Z73zWbg)
+13. Now the endpoint should be available according to your environment variables configuration. Default is at `http://example.yourdomain.com`
+Your API is ready, give it a try here => [DOCS](https://documenter.getpostman.com/view/18988925/2s8Z73zWbg)
 
 ### Install Zete-Panel
 
