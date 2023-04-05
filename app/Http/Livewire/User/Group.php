@@ -8,6 +8,7 @@ use Livewire\WithPagination;
 class Group extends Component
 {
     use WithPagination;
+    
     public $q = null;
     public $perPage = 5;
     protected $paginationTheme = 'bootstrap';

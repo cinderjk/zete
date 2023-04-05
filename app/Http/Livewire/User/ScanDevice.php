@@ -45,36 +45,34 @@ class ScanDevice extends Component
                 return $this->qr_data = Cache::get('device_id_qr_'.$this->device_id);
             }
         }
-        removeSession($this->device_id);
         $add = addSession($this->device_id, $this->legacy);
-        if($add->success == false) {
+        if(isset($add->success)) {
             $this->show_refresh = true;
             return $this->text = "Please try again 20 seconds later";
+        } elseif (isset($add->error) && $add->error == 'Session already exists') {
+            return removeSession($this->device_id);
+        } else {
+            $this->qr_data = $add->qr;
+            Cache::put('time_device_id_qr_'.$this->device_id, now()->timestamp, 20);
+            return Cache::put('device_id_qr_'.$this->device_id, $this->qr_data, 20);
         }
-        $this->qr_data = $add->data->qr;
-        Cache::put('time_device_id_qr_'.$this->device_id, now()->timestamp, 20);
-        return Cache::put('device_id_qr_'.$this->device_id, $this->qr_data, 20);
     }
 
     public function checkSession()
     {
         $check = sessionStatus($this->device_id);
-        if($check->status == "AUTHENTICATED") {
-            if(!is_null($check->data->status) && $check->data->status == 'authenticated') {
-                Device::where('id', $this->device_id)->update([
-                    'status' => 1
-                ]);
-                sleep(3);
-                return to_route('device')->with('message', 'Device has been authenticated');
-            }
-            return;
+        if(isset($check->status) && $check->status == 'AUTHENTICATED') {
+            Device::where('id', $this->device_id)->update([
+                'status' => 1
+            ]);
+            sleep(3);
+            return to_route('device')->with('message', 'Device has been authenticated');
         } else {
             Device::where('id', $this->device_id)->update([
                 'status' => 0
             ]);
             $this->status = 0;
             $this->text = 'Device is not connected';
-            return;
         }
     }
 

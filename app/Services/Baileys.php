@@ -88,7 +88,7 @@ class Baileys
 
     public function removeSession($id)
     {
-        $response = $this->http->asJson()->delete('sessions/delete/' .$id);
+        $response = $this->http->asJson()->delete('sessions/' .$id);
 
         return $response->object();
     }

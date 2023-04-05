@@ -50,7 +50,7 @@
                                 </td>
                                 <td>
                                     @if ($item->status == 200)
-                                    <span class="badge badge-success">200</span>
+                                    <span class="badge badge-success">OK</span>
                                     @else
                                     <span class="badge badge-danger">ERROR</span>
                                     @endif

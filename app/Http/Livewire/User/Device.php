@@ -14,7 +14,7 @@ class Device extends Component
         $devices = DeviceModel::where('user_id', auth()->user()->id)->get();
         foreach($devices as $device) {
             $check = sessionStatus($device->id);
-            if($check->status == "AUTHENTICATED") {
+            if(isset($check->status)) {
                 DeviceModel::where('id', $device->id)->update([
                     'status' => 1
                 ]);
@@ -35,7 +35,7 @@ class Device extends Component
             return to_route('device')->with('message', 'Device not found');
         }
         $remove = removeSession($d->id);
-        if($remove->success == true) {
+        if(isset($remove->message)) {
             DeviceModel::where('id', $id)->update([
                 'status' => 0
             ]);
@@ -50,9 +50,12 @@ class Device extends Component
         if(!$d) {
             return to_route('device')->with('message', 'Device not found');
         }
-        removeSession($d->id);
-        DeviceModel::where('id', $id)->delete();
-        return to_route('device')->with('message', 'Device removed');
+        $remove = removeSession($d->id);
+        if(isset($remove->message)) {
+            DeviceModel::where('id', $id)->delete();
+            return to_route('device')->with('message', 'Device removed');
+        }
+        return to_route('device')->with('message', 'Session not removed'); 
     }
 
     public function render()
