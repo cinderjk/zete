@@ -36,21 +36,25 @@ git clone https://github.com/ookamiiixd/baileys-api.git public_html/example.your
 cd public_html/example.yourdomain.com
 ```
 
-4. Install the dependencies
+4. Setup configuration
+
+#### Create a database for ookamiiiixd/baileys-api as it is needed for data storage
+
+Then copy the .env from .env.example
 
 ```bash
-yarn install
+cp .env.example .env
 ```
 
-or
+then edit the .env file, you can use nano with the command
 
 ```bash
-npm install
+nano .env
 ```
 
-5. Open file manager and edit the .env
+Paste this
 
-```bash
+```env
 # Listening Host
 HOST="127.0.0.1"
 
@@ -58,7 +62,8 @@ HOST="127.0.0.1"
 PORT="48000"
 
 # Database Connection URL
-DATABASE_URL="mysql://root:12345@localhost:3306/baileys_api"
+# mysql://{db_username}:{db_password}@127.0.0.1:3306/{db_name}
+DATABASE_URL="mysql://root:12345@127.0.0.1:3306/baileys_api"
 
 # Reconnect Interval (in Milliseconds)
 RECONNECT_INTERVAL="5000"
@@ -73,15 +78,43 @@ SSE_MAX_QR_GENERATION="10"
 LOG_LEVEL="warn"
 ```
 
-#### Note:
+5. Install the dependencies
 
-##### HOST: don't change it
+```bash
+yarn install
+```
 
-##### PORT: use any port 48000 - 49000
+or
 
-#
+```bash
+npm i
+```
 
-6. Create .htaccess file, and copy these
+6. Build the project
+
+```bash
+yarn build
+```
+
+or
+
+```sh
+npm run build
+```
+
+7. Push the schema
+
+```sh
+npx prisma db push
+```
+
+8. Start the ookamiiixd/baileys-api
+
+```sh
+npm run start
+```
+
+9. Create .htaccess file, and copy these
 
 ```bash
 Options +FollowSymLinks -Indexes
@@ -93,27 +126,7 @@ RewriteRule ^(.*)$ http://127.0.0.1:48000/$1 [P]
 </IfModule>
 ```
 
-Next step edit whatsapp.js, and uncomment line:71, and save it
-
-```bash
-69| const requiresPatch = !!(
-70|     message.buttonsMessage ||
-71|     // message.templateMessage ||
-72|     message.listMessage
-73| );
-```
-
-to
-
-```bash
-69| const requiresPatch = !!(
-70|     message.buttonsMessage ||
-71|     message.templateMessage ||
-72|     message.listMessage
-73| );
-```
-
-7. Go to "Setup Node.js App", follow these settings, and Create
+10. Go to "Setup Node.js App", follow these settings, and Create
 
 ```bash
 Node.js version = v16 above
@@ -123,13 +136,13 @@ Application URL = example.yourdomain.com
 Application startup file = app.js
 ```
 
-8. Copy the virtual environment path, open your terminal or SSH, paste it, and Enter
+11. Copy the virtual environment path, open your terminal or SSH, paste it, and Enter
 
 ```bash
 source /home/u123456/nodevenv/public_html/example.yourdomain.com/16/bin/activate && cd /home/u123456/public_html/example.yourdomain.com
 ```
 
-9. Install pm2
+12. Install pm2
 
 ```bash
 npm install pm2@latest -g
@@ -141,13 +154,14 @@ or
 yarn global add pm2
 ```
 
-10. Run the app.js
+13. Run the app.js
 
 ```bash
 npx pm2 start app.js
 ```
 
-Your API is ready, give it a try here => [DOCS](https://documenter.getpostman.com/view/18988925/2s8Z73zWbg)
+14. Now the endpoint should be available according to your environment variables configuration. Default is at `http://example.yourdomain.com`
+    Your API is ready, give it a try here => [DOCS](https://documenter.getpostman.com/view/18988925/2s8Z73zWbg)
 
 ### Install Zete-Panel
 
@@ -170,7 +184,7 @@ cd public_html/yourdomain.com
 composer i
 ```
 
-4. Create a Database
+4. Create a new Database
 5. Open file manager and edit the .env
 
 ```bash
@@ -185,9 +199,9 @@ USE_JOB_QUEUE=false
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
-DB_DATABASE=your_database
-DB_USERNAME=your_database_username
-DB_PASSWORD=your_database_password
+DB_DATABASE=your_zete_database
+DB_USERNAME=your_zete_database_username
+DB_PASSWORD=your_zete_database_password
 ```
 
 #### Note:
