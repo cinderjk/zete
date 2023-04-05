@@ -37,3 +37,21 @@ jobs:
       run: vendor/bin/phpunit
     - name: Running fresh:data
       run: php artisan fresh:data
+  migrate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      
+      - name: Install dependencies
+        run: composer install
+
+      - name: Set up environment
+        env:
+          DB_HOST: localhost
+          DB_DATABASE: mydatabase
+          DB_USERNAME: myuser
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+      - name: Running fresh:data
+        run: php artisan fresh:data
