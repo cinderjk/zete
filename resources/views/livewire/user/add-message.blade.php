@@ -49,6 +49,12 @@
                         <p>Sending message...</p>
                     </div>
                 </form>
+                @if(config('app.use_job_queue'))
+                <div class="alert alert-info text-white">
+                    <p class="m-0">Message will be sent using job queue. <a
+                            href="https://github.com/cinderjk/zete/tree/master#use_job_queue-if-you-enable-it-you-will-need-a-cron-job-to-run-these-commands">Docs</a></p>
+                </div>
+                @endif
             </div>
         </div>
     </div>

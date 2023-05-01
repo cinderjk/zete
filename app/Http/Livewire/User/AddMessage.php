@@ -5,6 +5,8 @@ namespace App\Http\Livewire\User;
 use Livewire\Component;
 use App\Models\MessageLog;
 use App\Models\Device;
+use App\Services\Baileys;
+use App\Jobs\SendWhatsapp;
 
 class AddMessage extends Component
 {
@@ -67,12 +69,16 @@ class AddMessage extends Component
             'to' => 'required',
             'message' => 'required',
         ]);
-        $send = sendMessages($this->device_id, $this->to, $this->message);
+        if(config('app.use_job_queue')){
+            SendWhatsapp::dispatch(auth()->user()->id, $this->device_id, $this->to, $this->message);
+            return $this->dispatchBrowserEvent('message', ['type' => 'success', 'message' => 'Message has been added to queue, if it not sent, please check your queue list, or check your device status']);
+        }
+        $send = Baileys::make()->sendMessage($this->device_id, $this->to, $this->message);
         if(isset($send['result']->status) && $send['result']->status === 'PENDING') {
             MessageLog::create([
                 'user_id' => auth()->user()->id,
                 'device_name' => $this->device_name,
-                'to' => $send['receiver'],
+                'to' => $this->to,
                 'message' => $send['message'],
                 'status' => 200
             ]);
@@ -81,7 +87,7 @@ class AddMessage extends Component
             MessageLog::create([
                 'user_id' => auth()->user()->id,
                 'device_name' => $this->device_name,
-                'to' => $send['receiver'],
+                'to' => $this->to,
                 'message' => $send['message'],
                 'status' => 500
             ]);
