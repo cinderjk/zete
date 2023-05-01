@@ -35,11 +35,13 @@ git clone https://github.com/ookamiiixd/baileys-api.git public_html/example.your
 ```bash
 cd public_html/example.yourdomain.com
 ```
+
 4. Setup configuration
 
 #### Create a database for ookamiiiixd/baileys-api as it is needed for data storage
 
 Then copy the .env from .env.example
+
 ```bash
 cp .env.example .env
 ```
@@ -49,6 +51,7 @@ then edit the .env file, you can use nano with the command
 ```bash
 nano .env
 ```
+
 Paste this
 
 ```env
@@ -87,7 +90,6 @@ RewriteRule ^(.*)$ http://127.0.0.1:48000/$1 [P]
 </IfModule>
 ```
 
-
 6. Go to "Setup Node.js App", follow these settings, and Create
 
 ```bash
@@ -103,6 +105,7 @@ Application startup file = app.js
 ```bash
 source /home/u123456/nodevenv/public_html/example.yourdomain.com/16/bin/activate && cd /home/u123456/public_html/example.yourdomain.com
 ```
+
 8. Install the dependencies
 
 ```bash
@@ -116,10 +119,13 @@ npm i
 ```
 
 9. Build the project
+
 ```bash
 yarn build
 ```
+
 or
+
 ```sh
 npm run build
 ```
@@ -147,8 +153,9 @@ yarn global add pm2
 ```bash
 npx pm2 start app.js
 ```
+
 13. Now the endpoint should be available according to your environment variables configuration. Default is at `http://example.yourdomain.com`
-Your API is ready, give it a try here => [DOCS](https://documenter.getpostman.com/view/18988925/2s8Z73zWbg)
+    Your API is ready, give it a try here => [DOCS](https://documenter.getpostman.com/view/18988925/2s8Z73zWbg)
 
 ### Install Zete-Panel
 
@@ -191,14 +198,24 @@ DB_USERNAME=your_zete_database_username
 DB_PASSWORD=your_zete_database_password
 ```
 
-#### Note:
+Note:
 
-##### WA_API_URL: change it to your API endpoint
+WA_API_URL: please change it to your API endpoint
 
-##### USE_JOB_QUEUE: if you enable it, you will need a cron job to run these commands
+#### Using Queue
+
+USE_JOB_QUEUE: set to `TRUE` If you want to use queue, you will need a cron jobs
+
+run these commands on cron jobs
 
 ```bash
 */5	*	*	*	*	/usr/local/bin/php /home/u123456/public_html/yourdomain.com/artisan queue:work --max-time=300 >> /dev/null 2>&1
+```
+
+via terminal
+
+```bash
+php artisan queue:work
 ```
 
 6. Run migration and key:generate, simply just

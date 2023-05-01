@@ -8,6 +8,7 @@ use App\Jobs\MakeMessageLog;
 use App\Models\MessageLog;
 use App\Models\Device;
 use App\Services\Baileys;
+use App\Jobs\SendWhatsapp;
 
 class MessageController extends Controller
 {
@@ -37,7 +38,14 @@ class MessageController extends Controller
         $device_id = $request->device_id;
         $phone = $request->phone;
         $message = $request->message;
-
+        $device = Device::find($device_id);
+        if(config('app.use_job_queue')){
+            SendWhatsapp::dispatch($device->user_id, $device_id, $phone, $message);
+            return response()->json([
+                'status' => true,
+                'message' => 'Message sent to queue',
+            ], 200);
+        }
         $send = Baileys::make()->sendMessage($device_id, $phone, $message);
         if(isset($send['result']->status) && $send['result']->status === 'PENDING') {
             $status = 200;
@@ -47,7 +55,6 @@ class MessageController extends Controller
         if(config('app.use_job_queue')){
             MakeMessageLog::dispatch($device_id, $phone, $message, $status);
         } else {
-            $device = Device::find($device_id);
             MessageLog::create([
                 'user_id' => $device->user_id,
                 'device_name' => $device->name,
